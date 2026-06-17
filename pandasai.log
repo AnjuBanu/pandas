@@ -1,0 +1,1944 @@
+2026-06-17 22:11:51 [INFO] Question: What all columns exist?
+2026-06-17 22:11:51 [INFO] Running PandasAI with openai LLM...
+2026-06-17 22:11:51 [INFO] Prompt ID: 5d0a60f2-e7b1-4cce-86b0-c31e1151fab5
+2026-06-17 22:11:51 [INFO] Generating new code...
+2026-06-17 22:11:51 [INFO] Using Prompt: <tables>
+
+<table dialect="duckdb" table_name="table_a1d2f5d18660a5b44142666b3bd95e40" columns="[{"name": "Unnamed: 0", "type": "integer", "description": null, "expression": null, "alias": null}, {"name": "Player's List", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Base Price", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "TYPE", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "COST IN ₹ (CR.)", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "Cost IN $ (000)", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "2022 Squad", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Team", "type": "string", "description": null, "expression": null, "alias": null}]" dimensions="568x8">
+Unnamed: 0,Player's List,Base Price,TYPE,COST IN ₹ (CR.),Cost IN $ (000),2022 Squad,Team
+0,Shivam Mavi,4000000,BOWLER,6.0,720.0,KKR,Gujarat Titans
+1,Joshua Little,5000000,BOWLER,4.4,528.0,,Gujarat Titans
+2,Kane Williamson,20000000,BATSMAN,2.0,240.0,SRH,Gujarat Titans
+3,K.S. Bharat,2000000,WICKETKEEPER,1.2,144.0,DC,Gujarat Titans
+4,Mohit Sharma,5000000,BOWLER,0.5,60.0,,Gujarat Titans
+</table>
+
+
+</tables>
+
+The following functions have already been provided. Please use them as needed and do not redefine them.
+<function>
+def execute_sql_query(sql_query: str) -> pd.DataFrame
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ What all columns exist?
+
+At the end, declare "result" variable as a dictionary of type and value in the following format:
+
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+
+
+Generate python code and return full updated code:
+
+### Note: Use only relevant table for query and do aggregation, sorting, joins and grouby through sql query
+2026-06-17 22:11:55 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-17 22:11:55 [INFO] Code Generated:
+# TODO: import the required dependencies
+import pandas as pd
+
+# Query to get all column names from the table
+sql_query = """
+PRAGMA table_info('table_a1d2f5d18660a5b44142666b3bd95e40');
+"""
+
+# Execute the query
+df_info = execute_sql_query(sql_query)
+
+# Extract column names
+columns = df_info['name'].tolist()
+
+# Prepare result string
+columns_str = ", ".join(columns)
+result = { "type": "string", "value": f"The columns in the table are: {columns_str}." }
+2026-06-17 22:11:55 [INFO] Validating code requirements...
+2026-06-17 22:11:55 [INFO] Code validation successful.
+2026-06-17 22:11:55 [INFO] Cleaning the generated code...
+2026-06-17 22:11:55 [INFO] Executing code: import pandas as pd
+sql_query = """
+PRAGMA table_info('table_a1d2f5d18660a5b44142666b3bd95e40');
+"""
+df_info = execute_sql_query(sql_query)
+columns = df_info['name'].tolist()
+columns_str = ', '.join(columns)
+result = {'type': 'string', 'value': f'The columns in the table are: {columns_str}.'}
+2026-06-17 22:11:57 [INFO] Failed to extract font properties from /System/Library/Fonts/Supplemental/NISC18030.ttf: In FT2Font: Could not set the fontsize (invalid pixel size; error code 0x17)
+2026-06-17 22:11:57 [INFO] Failed to extract font properties from /System/Library/Fonts/Apple Color Emoji.ttc: In FT2Font: Could not set the fontsize (invalid pixel size; error code 0x17)
+2026-06-17 22:11:57 [INFO] Failed to extract font properties from /System/Library/Fonts/LastResort.otf: tuple indices must be integers or slices, not str
+2026-06-17 22:11:57 [INFO] Failed to extract font properties from /System/Library/Fonts/SFIndia.ttc: In FT2Font: Can not load face (SFNT font table missing; error code 0x8e)
+2026-06-17 22:11:57 [INFO] generated new fontManager
+2026-06-17 22:11:57 [INFO] Response generated successfully.
+2026-06-17 22:12:18 [INFO] Question: Which players were the most expensive buys?
+2026-06-17 22:12:18 [INFO] Running PandasAI with openai LLM...
+2026-06-17 22:12:18 [INFO] Prompt ID: 97689319-f536-48e5-97fa-972b7db4638d
+2026-06-17 22:12:18 [INFO] Generating new code...
+2026-06-17 22:12:18 [INFO] Using Prompt: <tables>
+
+<table dialect="duckdb" table_name="table_a1d2f5d18660a5b44142666b3bd95e40" columns="[{"name": "Unnamed: 0", "type": "integer", "description": null, "expression": null, "alias": null}, {"name": "Player's List", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Base Price", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "TYPE", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "COST IN ₹ (CR.)", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "Cost IN $ (000)", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "2022 Squad", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Team", "type": "string", "description": null, "expression": null, "alias": null}]" dimensions="568x8">
+Unnamed: 0,Player's List,Base Price,TYPE,COST IN ₹ (CR.),Cost IN $ (000),2022 Squad,Team
+0,Shivam Mavi,4000000,BOWLER,6.0,720.0,KKR,Gujarat Titans
+1,Joshua Little,5000000,BOWLER,4.4,528.0,,Gujarat Titans
+2,Kane Williamson,20000000,BATSMAN,2.0,240.0,SRH,Gujarat Titans
+3,K.S. Bharat,2000000,WICKETKEEPER,1.2,144.0,DC,Gujarat Titans
+4,Mohit Sharma,5000000,BOWLER,0.5,60.0,,Gujarat Titans
+</table>
+
+
+</tables>
+
+The following functions have already been provided. Please use them as needed and do not redefine them.
+<function>
+def execute_sql_query(sql_query: str) -> pd.DataFrame
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+
+Last code generated:
+import pandas as pd
+sql_query = """
+PRAGMA table_info('table_a1d2f5d18660a5b44142666b3bd95e40');
+"""
+df_info = execute_sql_query(sql_query)
+columns = df_info['name'].tolist()
+columns_str = ', '.join(columns)
+result = {'type': 'string', 'value': f'The columns in the table are: {columns_str}.'}
+
+
+
+### QUERY
+ Which players were the most expensive buys?
+
+At the end, declare "result" variable as a dictionary of type and value in the following format:
+
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+
+
+Generate python code and return full updated code:
+
+### Note: Use only relevant table for query and do aggregation, sorting, joins and grouby through sql query
+2026-06-17 22:12:20 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-17 22:12:20 [INFO] Code Generated:
+import pandas as pd
+sql_query = """
+SELECT "Player's List", "COST IN ₹ (CR.)"
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+ORDER BY "COST IN ₹ (CR.)" DESC
+LIMIT 5;
+"""
+df_expensive_players = execute_sql_query(sql_query)
+
+result = {"type": "dataframe", "value": df_expensive_players}
+2026-06-17 22:12:20 [INFO] Validating code requirements...
+2026-06-17 22:12:20 [INFO] Code validation successful.
+2026-06-17 22:12:20 [INFO] Cleaning the generated code...
+2026-06-17 22:12:20 [INFO] Executing code: import pandas as pd
+sql_query = """
+SELECT "Player's List", "COST IN ₹ (CR.)"
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+ORDER BY "COST IN ₹ (CR.)" DESC
+LIMIT 5;
+"""
+df_expensive_players = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': df_expensive_players}
+2026-06-17 22:12:20 [INFO] Response generated successfully.
+2026-06-17 22:12:31 [INFO] Question: Which players were the cheapest buys this season and which teams bought them?
+2026-06-17 22:12:31 [INFO] Running PandasAI with openai LLM...
+2026-06-17 22:12:31 [INFO] Prompt ID: d5da942f-583f-46ab-95d9-bf9e24f8df1d
+2026-06-17 22:12:31 [INFO] Generating new code...
+2026-06-17 22:12:31 [INFO] Using Prompt: <tables>
+
+<table dialect="duckdb" table_name="table_a1d2f5d18660a5b44142666b3bd95e40" columns="[{"name": "Unnamed: 0", "type": "integer", "description": null, "expression": null, "alias": null}, {"name": "Player's List", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Base Price", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "TYPE", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "COST IN ₹ (CR.)", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "Cost IN $ (000)", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "2022 Squad", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Team", "type": "string", "description": null, "expression": null, "alias": null}]" dimensions="568x8">
+Unnamed: 0,Player's List,Base Price,TYPE,COST IN ₹ (CR.),Cost IN $ (000),2022 Squad,Team
+0,Shivam Mavi,4000000,BOWLER,6.0,720.0,KKR,Gujarat Titans
+1,Joshua Little,5000000,BOWLER,4.4,528.0,,Gujarat Titans
+2,Kane Williamson,20000000,BATSMAN,2.0,240.0,SRH,Gujarat Titans
+3,K.S. Bharat,2000000,WICKETKEEPER,1.2,144.0,DC,Gujarat Titans
+4,Mohit Sharma,5000000,BOWLER,0.5,60.0,,Gujarat Titans
+</table>
+
+
+</tables>
+
+The following functions have already been provided. Please use them as needed and do not redefine them.
+<function>
+def execute_sql_query(sql_query: str) -> pd.DataFrame
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+
+Last code generated:
+import pandas as pd
+sql_query = """
+SELECT "Player's List", "COST IN ₹ (CR.)"
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+ORDER BY "COST IN ₹ (CR.)" DESC
+LIMIT 5;
+"""
+df_expensive_players = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': df_expensive_players}
+
+
+
+### QUERY
+ Which players were the cheapest buys this season and which teams bought them?
+
+At the end, declare "result" variable as a dictionary of type and value in the following format:
+
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+
+
+Generate python code and return full updated code:
+
+### Note: Use only relevant table for query and do aggregation, sorting, joins and grouby through sql query
+2026-06-17 22:12:34 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-17 22:12:34 [INFO] Code Generated:
+import pandas as pd
+sql_query = """
+SELECT "Player's List", "Team", "COST IN ₹ (CR.)"
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+WHERE "COST IN ₹ (CR.)" = (
+    SELECT MIN("COST IN ₹ (CR.)") FROM table_a1d2f5d18660a5b44142666b3bd95e40
+)
+ORDER BY "Player's List";
+"""
+df_cheapest_players = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': df_cheapest_players}
+2026-06-17 22:12:34 [INFO] Validating code requirements...
+2026-06-17 22:12:34 [INFO] Code validation successful.
+2026-06-17 22:12:34 [INFO] Cleaning the generated code...
+2026-06-17 22:12:34 [INFO] Executing code: import pandas as pd
+sql_query = """
+SELECT "Player's List", "Team", "COST IN ₹ (CR.)"
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+WHERE "COST IN ₹ (CR.)" = (
+    SELECT MIN("COST IN ₹ (CR.)") FROM table_a1d2f5d18660a5b44142666b3bd95e40
+)
+ORDER BY "Player's List";
+"""
+df_cheapest_players = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': df_cheapest_players}
+2026-06-17 22:12:34 [INFO] Response generated successfully.
+2026-06-17 22:13:18 [INFO] Question: Draw a bar graph showing how much money was spent by each team this season overall.
+2026-06-17 22:13:18 [INFO] Running PandasAI with openai LLM...
+2026-06-17 22:13:18 [INFO] Prompt ID: f42e8207-86e2-4f52-85b2-6aa30a07fad1
+2026-06-17 22:13:18 [INFO] Generating new code...
+2026-06-17 22:13:18 [INFO] Using Prompt: <tables>
+
+<table dialect="duckdb" table_name="table_a1d2f5d18660a5b44142666b3bd95e40" columns="[{"name": "Unnamed: 0", "type": "integer", "description": null, "expression": null, "alias": null}, {"name": "Player's List", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Base Price", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "TYPE", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "COST IN ₹ (CR.)", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "Cost IN $ (000)", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "2022 Squad", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Team", "type": "string", "description": null, "expression": null, "alias": null}]" dimensions="568x8">
+Unnamed: 0,Player's List,Base Price,TYPE,COST IN ₹ (CR.),Cost IN $ (000),2022 Squad,Team
+0,Shivam Mavi,4000000,BOWLER,6.0,720.0,KKR,Gujarat Titans
+1,Joshua Little,5000000,BOWLER,4.4,528.0,,Gujarat Titans
+2,Kane Williamson,20000000,BATSMAN,2.0,240.0,SRH,Gujarat Titans
+3,K.S. Bharat,2000000,WICKETKEEPER,1.2,144.0,DC,Gujarat Titans
+4,Mohit Sharma,5000000,BOWLER,0.5,60.0,,Gujarat Titans
+</table>
+
+
+</tables>
+
+The following functions have already been provided. Please use them as needed and do not redefine them.
+<function>
+def execute_sql_query(sql_query: str) -> pd.DataFrame
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+
+Last code generated:
+import pandas as pd
+sql_query = """
+SELECT "Player's List", "Team", "COST IN ₹ (CR.)"
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+WHERE "COST IN ₹ (CR.)" = (
+    SELECT MIN("COST IN ₹ (CR.)") FROM table_a1d2f5d18660a5b44142666b3bd95e40
+)
+ORDER BY "Player's List";
+"""
+df_cheapest_players = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': df_cheapest_players}
+
+
+
+### QUERY
+ Draw a bar graph showing how much money was spent by each team this season overall.
+
+At the end, declare "result" variable as a dictionary of type and value in the following format:
+
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+
+
+Generate python code and return full updated code:
+
+### Note: Use only relevant table for query and do aggregation, sorting, joins and grouby through sql query
+2026-06-17 22:13:20 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-17 22:13:20 [INFO] Code Generated:
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# SQL query to get total money spent by each team
+sql_query = """
+SELECT Team, SUM("COST IN ₹ (CR.)") AS Total_Spent_Cr
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+GROUP BY Team
+ORDER BY Total_Spent_Cr DESC
+"""
+df_team_spent = execute_sql_query(sql_query)
+
+# Plotting the bar graph
+plt.figure(figsize=(10,6))
+plt.bar(df_team_spent['Team'], df_team_spent['Total_Spent_Cr'], color='skyblue')
+plt.xlabel('Team')
+plt.ylabel('Total Money Spent (₹ Crores)')
+plt.title('Total Money Spent by Each Team This Season')
+plt.xticks(rotation=45, ha='right')
+plt.tight_layout()
+
+# Save plot to a file
+plot_filename = "team_spending_bargraph.png"
+plt.savefig(plot_filename)
+plt.close()
+
+result = {"type": "plot", "value": plot_filename}
+2026-06-17 22:13:20 [INFO] Validating code requirements...
+2026-06-17 22:13:20 [INFO] Code validation successful.
+2026-06-17 22:13:20 [INFO] Cleaning the generated code...
+2026-06-17 22:13:20 [INFO] Executing code: import pandas as pd
+import matplotlib.pyplot as plt
+sql_query = """
+SELECT Team, SUM("COST IN ₹ (CR.)") AS Total_Spent_Cr
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+GROUP BY Team
+ORDER BY Total_Spent_Cr DESC
+"""
+df_team_spent = execute_sql_query(sql_query)
+plt.figure(figsize=(10, 6))
+plt.bar(df_team_spent['Team'], df_team_spent['Total_Spent_Cr'], color='skyblue')
+plt.xlabel('Team')
+plt.ylabel('Total Money Spent (₹ Crores)')
+plt.title('Total Money Spent by Each Team This Season')
+plt.xticks(rotation=45, ha='right')
+plt.tight_layout()
+plot_filename = 'exports/charts/temp_chart_cc30d362-9f9b-40dd-818b-8d8e7f2fd30d.png'
+plt.savefig(plot_filename)
+plt.close()
+result = {'type': 'plot', 'value': plot_filename}
+2026-06-17 22:13:21 [INFO] Response generated successfully.
+2026-06-17 22:14:36 [INFO] Question: Draw a bar graph showing how much money was spent by each team this season overall. Do not export display it here only 
+2026-06-17 22:14:36 [INFO] Running PandasAI with openai LLM...
+2026-06-17 22:14:36 [INFO] Prompt ID: fe9b2fde-e253-494f-94f0-c3d327c3544c
+2026-06-17 22:14:36 [INFO] Generating new code...
+2026-06-17 22:14:36 [INFO] Using Prompt: <tables>
+
+<table dialect="duckdb" table_name="table_a1d2f5d18660a5b44142666b3bd95e40" columns="[{"name": "Unnamed: 0", "type": "integer", "description": null, "expression": null, "alias": null}, {"name": "Player's List", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Base Price", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "TYPE", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "COST IN ₹ (CR.)", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "Cost IN $ (000)", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "2022 Squad", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Team", "type": "string", "description": null, "expression": null, "alias": null}]" dimensions="568x8">
+Unnamed: 0,Player's List,Base Price,TYPE,COST IN ₹ (CR.),Cost IN $ (000),2022 Squad,Team
+0,Shivam Mavi,4000000,BOWLER,6.0,720.0,KKR,Gujarat Titans
+1,Joshua Little,5000000,BOWLER,4.4,528.0,,Gujarat Titans
+2,Kane Williamson,20000000,BATSMAN,2.0,240.0,SRH,Gujarat Titans
+3,K.S. Bharat,2000000,WICKETKEEPER,1.2,144.0,DC,Gujarat Titans
+4,Mohit Sharma,5000000,BOWLER,0.5,60.0,,Gujarat Titans
+</table>
+
+
+</tables>
+
+The following functions have already been provided. Please use them as needed and do not redefine them.
+<function>
+def execute_sql_query(sql_query: str) -> pd.DataFrame
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+
+Last code generated:
+import pandas as pd
+import matplotlib.pyplot as plt
+sql_query = """
+SELECT Team, SUM("COST IN ₹ (CR.)") AS Total_Spent_Cr
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+GROUP BY Team
+ORDER BY Total_Spent_Cr DESC
+"""
+df_team_spent = execute_sql_query(sql_query)
+plt.figure(figsize=(10, 6))
+plt.bar(df_team_spent['Team'], df_team_spent['Total_Spent_Cr'], color='skyblue')
+plt.xlabel('Team')
+plt.ylabel('Total Money Spent (₹ Crores)')
+plt.title('Total Money Spent by Each Team This Season')
+plt.xticks(rotation=45, ha='right')
+plt.tight_layout()
+plot_filename = 'exports/charts/temp_chart_cc30d362-9f9b-40dd-818b-8d8e7f2fd30d.png'
+plt.savefig(plot_filename)
+plt.close()
+result = {'type': 'plot', 'value': plot_filename}
+
+
+
+### QUERY
+ Draw a bar graph showing how much money was spent by each team this season overall. Do not export display it here only 
+
+At the end, declare "result" variable as a dictionary of type and value in the following format:
+
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+
+
+Generate python code and return full updated code:
+
+### Note: Use only relevant table for query and do aggregation, sorting, joins and grouby through sql query
+2026-06-17 22:14:39 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-17 22:14:39 [INFO] Code Generated:
+import pandas as pd
+import matplotlib.pyplot as plt
+
+sql_query = """
+SELECT Team, SUM("COST IN ₹ (CR.)") AS Total_Spent_Cr
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+GROUP BY Team
+ORDER BY Total_Spent_Cr DESC
+"""
+df_team_spent = execute_sql_query(sql_query)
+
+plt.figure(figsize=(10, 6))
+plt.bar(df_team_spent['Team'], df_team_spent['Total_Spent_Cr'], color='skyblue')
+plt.xlabel('Team')
+plt.ylabel('Total Money Spent (₹ Crores)')
+plt.title('Total Money Spent by Each Team This Season')
+plt.xticks(rotation=45, ha='right')
+plt.tight_layout()
+
+plot_filename = 'exports/charts/temp_chart_cc30d362-9f9b-40dd-818b-8d8e7f2fd30d.png'
+plt.savefig(plot_filename)
+plt.close()
+
+result = {'type': 'plot', 'value': plot_filename}
+2026-06-17 22:14:39 [INFO] Validating code requirements...
+2026-06-17 22:14:39 [INFO] Code validation successful.
+2026-06-17 22:14:39 [INFO] Cleaning the generated code...
+2026-06-17 22:14:39 [INFO] Executing code: import pandas as pd
+import matplotlib.pyplot as plt
+sql_query = """
+SELECT Team, SUM("COST IN ₹ (CR.)") AS Total_Spent_Cr
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+GROUP BY Team
+ORDER BY Total_Spent_Cr DESC
+"""
+df_team_spent = execute_sql_query(sql_query)
+plt.figure(figsize=(10, 6))
+plt.bar(df_team_spent['Team'], df_team_spent['Total_Spent_Cr'], color='skyblue')
+plt.xlabel('Team')
+plt.ylabel('Total Money Spent (₹ Crores)')
+plt.title('Total Money Spent by Each Team This Season')
+plt.xticks(rotation=45, ha='right')
+plt.tight_layout()
+plot_filename = 'exports/charts/temp_chart_99b07849-2b86-4655-a913-a74d2fd00129.png'
+plt.savefig(plot_filename)
+plt.close()
+result = {'type': 'plot', 'value': plot_filename}
+2026-06-17 22:14:39 [INFO] Response generated successfully.
+2026-06-17 22:14:56 [INFO] Question: Draw a bar graph showing how much money was spent by each team this season overall.
+2026-06-17 22:14:56 [INFO] Running PandasAI with openai LLM...
+2026-06-17 22:14:56 [INFO] Prompt ID: 2e4abc14-b80b-4cb1-893b-91dffc087410
+2026-06-17 22:14:56 [INFO] Generating new code...
+2026-06-17 22:14:56 [INFO] Using Prompt: <tables>
+
+<table dialect="duckdb" table_name="table_a1d2f5d18660a5b44142666b3bd95e40" columns="[{"name": "Unnamed: 0", "type": "integer", "description": null, "expression": null, "alias": null}, {"name": "Player's List", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Base Price", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "TYPE", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "COST IN ₹ (CR.)", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "Cost IN $ (000)", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "2022 Squad", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Team", "type": "string", "description": null, "expression": null, "alias": null}]" dimensions="568x8">
+Unnamed: 0,Player's List,Base Price,TYPE,COST IN ₹ (CR.),Cost IN $ (000),2022 Squad,Team
+0,Shivam Mavi,4000000,BOWLER,6.0,720.0,KKR,Gujarat Titans
+1,Joshua Little,5000000,BOWLER,4.4,528.0,,Gujarat Titans
+2,Kane Williamson,20000000,BATSMAN,2.0,240.0,SRH,Gujarat Titans
+3,K.S. Bharat,2000000,WICKETKEEPER,1.2,144.0,DC,Gujarat Titans
+4,Mohit Sharma,5000000,BOWLER,0.5,60.0,,Gujarat Titans
+</table>
+
+
+</tables>
+
+The following functions have already been provided. Please use them as needed and do not redefine them.
+<function>
+def execute_sql_query(sql_query: str) -> pd.DataFrame
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+
+Last code generated:
+import pandas as pd
+import matplotlib.pyplot as plt
+sql_query = """
+SELECT Team, SUM("COST IN ₹ (CR.)") AS Total_Spent_Cr
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+GROUP BY Team
+ORDER BY Total_Spent_Cr DESC
+"""
+df_team_spent = execute_sql_query(sql_query)
+plt.figure(figsize=(10, 6))
+plt.bar(df_team_spent['Team'], df_team_spent['Total_Spent_Cr'], color='skyblue')
+plt.xlabel('Team')
+plt.ylabel('Total Money Spent (₹ Crores)')
+plt.title('Total Money Spent by Each Team This Season')
+plt.xticks(rotation=45, ha='right')
+plt.tight_layout()
+plot_filename = 'exports/charts/temp_chart_99b07849-2b86-4655-a913-a74d2fd00129.png'
+plt.savefig(plot_filename)
+plt.close()
+result = {'type': 'plot', 'value': plot_filename}
+
+
+
+### QUERY
+ Draw a bar graph showing how much money was spent by each team this season overall.
+
+At the end, declare "result" variable as a dictionary of type and value in the following format:
+
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+
+
+Generate python code and return full updated code:
+
+### Note: Use only relevant table for query and do aggregation, sorting, joins and grouby through sql query
+2026-06-17 22:14:58 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-17 22:14:58 [INFO] Code Generated:
+import pandas as pd
+import matplotlib.pyplot as plt
+
+sql_query = """
+SELECT Team, SUM("COST IN ₹ (CR.)") AS Total_Spent_Cr
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+GROUP BY Team
+ORDER BY Total_Spent_Cr DESC
+"""
+df_team_spent = execute_sql_query(sql_query)
+
+plt.figure(figsize=(10, 6))
+plt.bar(df_team_spent['Team'], df_team_spent['Total_Spent_Cr'], color='skyblue')
+plt.xlabel('Team')
+plt.ylabel('Total Money Spent (₹ Crores)')
+plt.title('Total Money Spent by Each Team This Season')
+plt.xticks(rotation=45, ha='right')
+plt.tight_layout()
+
+plot_filename = 'exports/charts/temp_chart_99b07849-2b86-4655-a913-a74d2fd00129.png'
+plt.savefig(plot_filename)
+plt.close()
+
+result = {'type': 'plot', 'value': plot_filename}
+2026-06-17 22:14:58 [INFO] Validating code requirements...
+2026-06-17 22:14:58 [INFO] Code validation successful.
+2026-06-17 22:14:58 [INFO] Cleaning the generated code...
+2026-06-17 22:14:58 [INFO] Executing code: import pandas as pd
+import matplotlib.pyplot as plt
+sql_query = """
+SELECT Team, SUM("COST IN ₹ (CR.)") AS Total_Spent_Cr
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+GROUP BY Team
+ORDER BY Total_Spent_Cr DESC
+"""
+df_team_spent = execute_sql_query(sql_query)
+plt.figure(figsize=(10, 6))
+plt.bar(df_team_spent['Team'], df_team_spent['Total_Spent_Cr'], color='skyblue')
+plt.xlabel('Team')
+plt.ylabel('Total Money Spent (₹ Crores)')
+plt.title('Total Money Spent by Each Team This Season')
+plt.xticks(rotation=45, ha='right')
+plt.tight_layout()
+plot_filename = 'exports/charts/temp_chart_8a0e0917-5320-4f5c-8bf8-ebe3b440b980.png'
+plt.savefig(plot_filename)
+plt.close()
+result = {'type': 'plot', 'value': plot_filename}
+2026-06-17 22:14:58 [INFO] Response generated successfully.
+2026-06-17 22:15:17 [INFO] Question: How many bowlers remained unsold and what were their base prices?
+2026-06-17 22:15:17 [INFO] Running PandasAI with openai LLM...
+2026-06-17 22:15:17 [INFO] Prompt ID: 9791b7a3-f164-4494-a69d-3879cd1422b0
+2026-06-17 22:15:17 [INFO] Generating new code...
+2026-06-17 22:15:17 [INFO] Using Prompt: <tables>
+
+<table dialect="duckdb" table_name="table_a1d2f5d18660a5b44142666b3bd95e40" columns="[{"name": "Unnamed: 0", "type": "integer", "description": null, "expression": null, "alias": null}, {"name": "Player's List", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Base Price", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "TYPE", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "COST IN ₹ (CR.)", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "Cost IN $ (000)", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "2022 Squad", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Team", "type": "string", "description": null, "expression": null, "alias": null}]" dimensions="568x8">
+Unnamed: 0,Player's List,Base Price,TYPE,COST IN ₹ (CR.),Cost IN $ (000),2022 Squad,Team
+0,Shivam Mavi,4000000,BOWLER,6.0,720.0,KKR,Gujarat Titans
+1,Joshua Little,5000000,BOWLER,4.4,528.0,,Gujarat Titans
+2,Kane Williamson,20000000,BATSMAN,2.0,240.0,SRH,Gujarat Titans
+3,K.S. Bharat,2000000,WICKETKEEPER,1.2,144.0,DC,Gujarat Titans
+4,Mohit Sharma,5000000,BOWLER,0.5,60.0,,Gujarat Titans
+</table>
+
+
+</tables>
+
+The following functions have already been provided. Please use them as needed and do not redefine them.
+<function>
+def execute_sql_query(sql_query: str) -> pd.DataFrame
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+
+Last code generated:
+import pandas as pd
+import matplotlib.pyplot as plt
+sql_query = """
+SELECT Team, SUM("COST IN ₹ (CR.)") AS Total_Spent_Cr
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+GROUP BY Team
+ORDER BY Total_Spent_Cr DESC
+"""
+df_team_spent = execute_sql_query(sql_query)
+plt.figure(figsize=(10, 6))
+plt.bar(df_team_spent['Team'], df_team_spent['Total_Spent_Cr'], color='skyblue')
+plt.xlabel('Team')
+plt.ylabel('Total Money Spent (₹ Crores)')
+plt.title('Total Money Spent by Each Team This Season')
+plt.xticks(rotation=45, ha='right')
+plt.tight_layout()
+plot_filename = 'exports/charts/temp_chart_8a0e0917-5320-4f5c-8bf8-ebe3b440b980.png'
+plt.savefig(plot_filename)
+plt.close()
+result = {'type': 'plot', 'value': plot_filename}
+
+
+
+### QUERY
+ How many bowlers remained unsold and what were their base prices?
+
+At the end, declare "result" variable as a dictionary of type and value in the following format:
+
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+
+
+Generate python code and return full updated code:
+
+### Note: Use only relevant table for query and do aggregation, sorting, joins and grouby through sql query
+2026-06-17 22:15:21 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-17 22:15:21 [INFO] Code Generated:
+import pandas as pd
+
+sql_query = """
+SELECT "Base Price", COUNT(*) AS Unsold_Bowlers_Count
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+WHERE TYPE = 'BOWLER' AND "COST IN ₹ (CR.)" = 0
+GROUP BY "Base Price"
+ORDER BY "Base Price" ASC
+"""
+df_unsold_bowlers = execute_sql_query(sql_query)
+
+# Also get total count of unsold bowlers
+sql_total_count = """
+SELECT COUNT(*) AS Total_Unsold_Bowlers
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+WHERE TYPE = 'BOWLER' AND "COST IN ₹ (CR.)" = 0
+"""
+df_total_unsold = execute_sql_query(sql_total_count)
+total_unsold = df_total_unsold.at[0, 'Total_Unsold_Bowlers']
+
+result = {
+    "type": "dataframe",
+    "value": df_unsold_bowlers
+}
+2026-06-17 22:15:21 [INFO] Validating code requirements...
+2026-06-17 22:15:21 [INFO] Code validation successful.
+2026-06-17 22:15:21 [INFO] Cleaning the generated code...
+2026-06-17 22:15:21 [INFO] Executing code: import pandas as pd
+sql_query = """
+SELECT "Base Price", COUNT(*) AS Unsold_Bowlers_Count
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+WHERE TYPE = 'BOWLER' AND "COST IN ₹ (CR.)" = 0
+GROUP BY "Base Price"
+ORDER BY "Base Price" ASC
+"""
+df_unsold_bowlers = execute_sql_query(sql_query)
+sql_total_count = """
+SELECT COUNT(*) AS Total_Unsold_Bowlers
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+WHERE TYPE = 'BOWLER' AND "COST IN ₹ (CR.)" = 0
+"""
+df_total_unsold = execute_sql_query(sql_total_count)
+total_unsold = df_total_unsold.at[0, 'Total_Unsold_Bowlers']
+result = {'type': 'dataframe', 'value': df_unsold_bowlers}
+2026-06-17 22:15:21 [INFO] Response generated successfully.
+2026-06-17 22:15:37 [INFO] Question: How many players remained unsold this season?
+2026-06-17 22:15:37 [INFO] Running PandasAI with openai LLM...
+2026-06-17 22:15:37 [INFO] Prompt ID: c8139b15-bcf0-4c14-a1b8-070d367f29b9
+2026-06-17 22:15:37 [INFO] Generating new code...
+2026-06-17 22:15:37 [INFO] Using Prompt: <tables>
+
+<table dialect="duckdb" table_name="table_a1d2f5d18660a5b44142666b3bd95e40" columns="[{"name": "Unnamed: 0", "type": "integer", "description": null, "expression": null, "alias": null}, {"name": "Player's List", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Base Price", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "TYPE", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "COST IN ₹ (CR.)", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "Cost IN $ (000)", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "2022 Squad", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Team", "type": "string", "description": null, "expression": null, "alias": null}]" dimensions="568x8">
+Unnamed: 0,Player's List,Base Price,TYPE,COST IN ₹ (CR.),Cost IN $ (000),2022 Squad,Team
+0,Shivam Mavi,4000000,BOWLER,6.0,720.0,KKR,Gujarat Titans
+1,Joshua Little,5000000,BOWLER,4.4,528.0,,Gujarat Titans
+2,Kane Williamson,20000000,BATSMAN,2.0,240.0,SRH,Gujarat Titans
+3,K.S. Bharat,2000000,WICKETKEEPER,1.2,144.0,DC,Gujarat Titans
+4,Mohit Sharma,5000000,BOWLER,0.5,60.0,,Gujarat Titans
+</table>
+
+
+</tables>
+
+The following functions have already been provided. Please use them as needed and do not redefine them.
+<function>
+def execute_sql_query(sql_query: str) -> pd.DataFrame
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+
+Last code generated:
+import pandas as pd
+sql_query = """
+SELECT "Base Price", COUNT(*) AS Unsold_Bowlers_Count
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+WHERE TYPE = 'BOWLER' AND "COST IN ₹ (CR.)" = 0
+GROUP BY "Base Price"
+ORDER BY "Base Price" ASC
+"""
+df_unsold_bowlers = execute_sql_query(sql_query)
+sql_total_count = """
+SELECT COUNT(*) AS Total_Unsold_Bowlers
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+WHERE TYPE = 'BOWLER' AND "COST IN ₹ (CR.)" = 0
+"""
+df_total_unsold = execute_sql_query(sql_total_count)
+total_unsold = df_total_unsold.at[0, 'Total_Unsold_Bowlers']
+result = {'type': 'dataframe', 'value': df_unsold_bowlers}
+
+
+
+### QUERY
+ How many players remained unsold this season?
+
+At the end, declare "result" variable as a dictionary of type and value in the following format:
+
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+
+
+Generate python code and return full updated code:
+
+### Note: Use only relevant table for query and do aggregation, sorting, joins and grouby through sql query
+2026-06-17 22:15:40 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-17 22:15:40 [INFO] Code Generated:
+import pandas as pd
+
+# Query to count total unsold players (players with COST IN ₹ (CR.) = 0)
+sql_total_unsold = """
+SELECT COUNT(*) AS Total_Unsold_Players
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+WHERE "COST IN ₹ (CR.)" = 0
+"""
+df_total_unsold = execute_sql_query(sql_total_unsold)
+total_unsold = df_total_unsold.at[0, 'Total_Unsold_Players']
+
+result = {"type": "number", "value": total_unsold}
+2026-06-17 22:15:40 [INFO] Validating code requirements...
+2026-06-17 22:15:40 [INFO] Code validation successful.
+2026-06-17 22:15:40 [INFO] Cleaning the generated code...
+2026-06-17 22:15:40 [INFO] Executing code: import pandas as pd
+sql_total_unsold = """
+SELECT COUNT(*) AS Total_Unsold_Players
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+WHERE "COST IN ₹ (CR.)" = 0
+"""
+df_total_unsold = execute_sql_query(sql_total_unsold)
+total_unsold = df_total_unsold.at[0, 'Total_Unsold_Players']
+result = {'type': 'number', 'value': total_unsold}
+2026-06-17 22:15:40 [INFO] Response generated successfully.
+2026-06-17 22:16:11 [INFO] Question: Which category of players had the highest number of unsold players?
+2026-06-17 22:16:11 [INFO] Running PandasAI with openai LLM...
+2026-06-17 22:16:11 [INFO] Prompt ID: d63b48f0-a0f7-4335-b97a-dee68e547039
+2026-06-17 22:16:11 [INFO] Generating new code...
+2026-06-17 22:16:11 [INFO] Using Prompt: <tables>
+
+<table dialect="duckdb" table_name="table_a1d2f5d18660a5b44142666b3bd95e40" columns="[{"name": "Unnamed: 0", "type": "integer", "description": null, "expression": null, "alias": null}, {"name": "Player's List", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Base Price", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "TYPE", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "COST IN ₹ (CR.)", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "Cost IN $ (000)", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "2022 Squad", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Team", "type": "string", "description": null, "expression": null, "alias": null}]" dimensions="568x8">
+Unnamed: 0,Player's List,Base Price,TYPE,COST IN ₹ (CR.),Cost IN $ (000),2022 Squad,Team
+0,Shivam Mavi,4000000,BOWLER,6.0,720.0,KKR,Gujarat Titans
+1,Joshua Little,5000000,BOWLER,4.4,528.0,,Gujarat Titans
+2,Kane Williamson,20000000,BATSMAN,2.0,240.0,SRH,Gujarat Titans
+3,K.S. Bharat,2000000,WICKETKEEPER,1.2,144.0,DC,Gujarat Titans
+4,Mohit Sharma,5000000,BOWLER,0.5,60.0,,Gujarat Titans
+</table>
+
+
+</tables>
+
+The following functions have already been provided. Please use them as needed and do not redefine them.
+<function>
+def execute_sql_query(sql_query: str) -> pd.DataFrame
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+
+Last code generated:
+import pandas as pd
+sql_total_unsold = """
+SELECT COUNT(*) AS Total_Unsold_Players
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+WHERE "COST IN ₹ (CR.)" = 0
+"""
+df_total_unsold = execute_sql_query(sql_total_unsold)
+total_unsold = df_total_unsold.at[0, 'Total_Unsold_Players']
+result = {'type': 'number', 'value': total_unsold}
+
+
+
+### QUERY
+ Which category of players had the highest number of unsold players?
+
+At the end, declare "result" variable as a dictionary of type and value in the following format:
+
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+
+
+Generate python code and return full updated code:
+
+### Note: Use only relevant table for query and do aggregation, sorting, joins and grouby through sql query
+2026-06-17 22:16:15 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-17 22:16:15 [INFO] Code Generated:
+import pandas as pd
+
+sql_unsold_by_type = """
+SELECT TYPE, COUNT(*) AS Unsold_Count
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+WHERE "COST IN ₹ (CR.)" = 0
+GROUP BY TYPE
+ORDER BY Unsold_Count DESC
+LIMIT 1
+"""
+df_unsold_by_type = execute_sql_query(sql_unsold_by_type)
+highest_unsold_type = df_unsold_by_type.at[0, 'TYPE']
+highest_unsold_count = df_unsold_by_type.at[0, 'Unsold_Count']
+
+result = {
+    "type": "string",
+    "value": f"The category of players with the highest number of unsold players is {highest_unsold_type} with {highest_unsold_count} unsold players."
+}
+2026-06-17 22:16:15 [INFO] Validating code requirements...
+2026-06-17 22:16:15 [INFO] Code validation successful.
+2026-06-17 22:16:15 [INFO] Cleaning the generated code...
+2026-06-17 22:16:15 [INFO] Executing code: import pandas as pd
+sql_unsold_by_type = """
+SELECT TYPE, COUNT(*) AS Unsold_Count
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+WHERE "COST IN ₹ (CR.)" = 0
+GROUP BY TYPE
+ORDER BY Unsold_Count DESC
+LIMIT 1
+"""
+df_unsold_by_type = execute_sql_query(sql_unsold_by_type)
+highest_unsold_type = df_unsold_by_type.at[0, 'TYPE']
+highest_unsold_count = df_unsold_by_type.at[0, 'Unsold_Count']
+result = {'type': 'string', 'value': f'The category of players with the highest number of unsold players is {highest_unsold_type} with {highest_unsold_count} unsold players.'}
+2026-06-17 22:16:15 [INFO] Response generated successfully.
+2026-06-17 22:16:29 [INFO] Question: Which three new players were picked by Gujarat Titans?
+2026-06-17 22:16:29 [INFO] Running PandasAI with openai LLM...
+2026-06-17 22:16:29 [INFO] Prompt ID: 69c74adf-9bc6-4797-88c0-5e857b12a3aa
+2026-06-17 22:16:29 [INFO] Generating new code...
+2026-06-17 22:16:29 [INFO] Using Prompt: <tables>
+
+<table dialect="duckdb" table_name="table_a1d2f5d18660a5b44142666b3bd95e40" columns="[{"name": "Unnamed: 0", "type": "integer", "description": null, "expression": null, "alias": null}, {"name": "Player's List", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Base Price", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "TYPE", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "COST IN ₹ (CR.)", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "Cost IN $ (000)", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "2022 Squad", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Team", "type": "string", "description": null, "expression": null, "alias": null}]" dimensions="568x8">
+Unnamed: 0,Player's List,Base Price,TYPE,COST IN ₹ (CR.),Cost IN $ (000),2022 Squad,Team
+0,Shivam Mavi,4000000,BOWLER,6.0,720.0,KKR,Gujarat Titans
+1,Joshua Little,5000000,BOWLER,4.4,528.0,,Gujarat Titans
+2,Kane Williamson,20000000,BATSMAN,2.0,240.0,SRH,Gujarat Titans
+3,K.S. Bharat,2000000,WICKETKEEPER,1.2,144.0,DC,Gujarat Titans
+4,Mohit Sharma,5000000,BOWLER,0.5,60.0,,Gujarat Titans
+</table>
+
+
+</tables>
+
+The following functions have already been provided. Please use them as needed and do not redefine them.
+<function>
+def execute_sql_query(sql_query: str) -> pd.DataFrame
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+
+Last code generated:
+import pandas as pd
+sql_unsold_by_type = """
+SELECT TYPE, COUNT(*) AS Unsold_Count
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+WHERE "COST IN ₹ (CR.)" = 0
+GROUP BY TYPE
+ORDER BY Unsold_Count DESC
+LIMIT 1
+"""
+df_unsold_by_type = execute_sql_query(sql_unsold_by_type)
+highest_unsold_type = df_unsold_by_type.at[0, 'TYPE']
+highest_unsold_count = df_unsold_by_type.at[0, 'Unsold_Count']
+result = {'type': 'string', 'value': f'The category of players with the highest number of unsold players is {highest_unsold_type} with {highest_unsold_count} unsold players.'}
+
+
+
+### QUERY
+ Which three new players were picked by Gujarat Titans?
+
+At the end, declare "result" variable as a dictionary of type and value in the following format:
+
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+
+
+Generate python code and return full updated code:
+
+### Note: Use only relevant table for query and do aggregation, sorting, joins and grouby through sql query
+2026-06-17 22:16:32 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-17 22:16:32 [INFO] Code Generated:
+import pandas as pd
+
+sql_new_players_gt = """
+SELECT "Player's List"
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+WHERE Team = 'Gujarat Titans' AND "2022 Squad" = ''
+LIMIT 3
+"""
+
+df_new_players_gt = execute_sql_query(sql_new_players_gt)
+new_players_list = df_new_players_gt["Player's List"].tolist()
+players_str = ", ".join(new_players_list)
+
+result = {
+    "type": "string",
+    "value": f"The three new players picked by Gujarat Titans are {players_str}."
+}
+2026-06-17 22:16:32 [INFO] Validating code requirements...
+2026-06-17 22:16:32 [INFO] Code validation successful.
+2026-06-17 22:16:32 [INFO] Cleaning the generated code...
+2026-06-17 22:16:32 [INFO] Executing code: import pandas as pd
+sql_new_players_gt = """
+SELECT "Player's List"
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+WHERE Team = 'Gujarat Titans' AND "2022 Squad" = ''
+LIMIT 3
+"""
+df_new_players_gt = execute_sql_query(sql_new_players_gt)
+new_players_list = df_new_players_gt["Player's List"].tolist()
+players_str = ', '.join(new_players_list)
+result = {'type': 'string', 'value': f'The three new players picked by Gujarat Titans are {players_str}.'}
+2026-06-17 22:16:32 [INFO] Response generated successfully.
+2026-06-17 22:17:54 [INFO] Question: Which three new players were picked by Gujarat Titans?
+2026-06-17 22:17:54 [INFO] Running PandasAI with openai LLM...
+2026-06-17 22:17:54 [INFO] Prompt ID: 96c70820-6edf-4d4a-8aca-b3bb4505ca19
+2026-06-17 22:17:54 [INFO] Generating new code...
+2026-06-17 22:17:54 [INFO] Using Prompt: <tables>
+
+<table dialect="duckdb" table_name="table_a1d2f5d18660a5b44142666b3bd95e40" columns="[{"name": "Unnamed: 0", "type": "integer", "description": null, "expression": null, "alias": null}, {"name": "Player's List", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Base Price", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "TYPE", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "COST IN ₹ (CR.)", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "Cost IN $ (000)", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "2022 Squad", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Team", "type": "string", "description": null, "expression": null, "alias": null}]" dimensions="568x8">
+Unnamed: 0,Player's List,Base Price,TYPE,COST IN ₹ (CR.),Cost IN $ (000),2022 Squad,Team
+0,Shivam Mavi,4000000,BOWLER,6.0,720.0,KKR,Gujarat Titans
+1,Joshua Little,5000000,BOWLER,4.4,528.0,,Gujarat Titans
+2,Kane Williamson,20000000,BATSMAN,2.0,240.0,SRH,Gujarat Titans
+3,K.S. Bharat,2000000,WICKETKEEPER,1.2,144.0,DC,Gujarat Titans
+4,Mohit Sharma,5000000,BOWLER,0.5,60.0,,Gujarat Titans
+</table>
+
+
+</tables>
+
+The following functions have already been provided. Please use them as needed and do not redefine them.
+<function>
+def execute_sql_query(sql_query: str) -> pd.DataFrame
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+
+Last code generated:
+import pandas as pd
+sql_new_players_gt = """
+SELECT "Player's List"
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+WHERE Team = 'Gujarat Titans' AND "2022 Squad" = ''
+LIMIT 3
+"""
+df_new_players_gt = execute_sql_query(sql_new_players_gt)
+new_players_list = df_new_players_gt["Player's List"].tolist()
+players_str = ', '.join(new_players_list)
+result = {'type': 'string', 'value': f'The three new players picked by Gujarat Titans are {players_str}.'}
+
+
+
+### QUERY
+ Which three new players were picked by Gujarat Titans?
+
+At the end, declare "result" variable as a dictionary of type and value in the following format:
+
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+
+
+Generate python code and return full updated code:
+
+### Note: Use only relevant table for query and do aggregation, sorting, joins and grouby through sql query
+2026-06-17 22:17:56 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-17 22:17:56 [INFO] Code Generated:
+import pandas as pd
+sql_new_players_gt = """
+SELECT "Player's List"
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+WHERE Team = 'Gujarat Titans' AND "2022 Squad" = ''
+LIMIT 3
+"""
+df_new_players_gt = execute_sql_query(sql_new_players_gt)
+new_players_list = df_new_players_gt["Player's List"].tolist()
+players_str = ', '.join(new_players_list)
+result = {'type': 'string', 'value': f'The three new players picked by Gujarat Titans are {players_str}.'}
+2026-06-17 22:17:56 [INFO] Validating code requirements...
+2026-06-17 22:17:56 [INFO] Code validation successful.
+2026-06-17 22:17:56 [INFO] Cleaning the generated code...
+2026-06-17 22:17:56 [INFO] Executing code: import pandas as pd
+sql_new_players_gt = """
+SELECT "Player's List"
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+WHERE Team = 'Gujarat Titans' AND "2022 Squad" = ''
+LIMIT 3
+"""
+df_new_players_gt = execute_sql_query(sql_new_players_gt)
+new_players_list = df_new_players_gt["Player's List"].tolist()
+players_str = ', '.join(new_players_list)
+result = {'type': 'string', 'value': f'The three new players picked by Gujarat Titans are {players_str}.'}
+2026-06-17 22:17:56 [INFO] Response generated successfully.
+2026-06-17 22:18:35 [INFO] Question: Hw many players are in kolkata knight riders
+2026-06-17 22:18:35 [INFO] Running PandasAI with openai LLM...
+2026-06-17 22:18:35 [INFO] Prompt ID: 28659ddf-3539-4aa9-8d5b-d8022fabc770
+2026-06-17 22:18:35 [INFO] Generating new code...
+2026-06-17 22:18:35 [INFO] Using Prompt: <tables>
+
+<table dialect="duckdb" table_name="table_a1d2f5d18660a5b44142666b3bd95e40" columns="[{"name": "Unnamed: 0", "type": "integer", "description": null, "expression": null, "alias": null}, {"name": "Player's List", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Base Price", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "TYPE", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "COST IN ₹ (CR.)", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "Cost IN $ (000)", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "2022 Squad", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Team", "type": "string", "description": null, "expression": null, "alias": null}]" dimensions="568x8">
+Unnamed: 0,Player's List,Base Price,TYPE,COST IN ₹ (CR.),Cost IN $ (000),2022 Squad,Team
+0,Shivam Mavi,4000000,BOWLER,6.0,720.0,KKR,Gujarat Titans
+1,Joshua Little,5000000,BOWLER,4.4,528.0,,Gujarat Titans
+2,Kane Williamson,20000000,BATSMAN,2.0,240.0,SRH,Gujarat Titans
+3,K.S. Bharat,2000000,WICKETKEEPER,1.2,144.0,DC,Gujarat Titans
+4,Mohit Sharma,5000000,BOWLER,0.5,60.0,,Gujarat Titans
+</table>
+
+
+</tables>
+
+The following functions have already been provided. Please use them as needed and do not redefine them.
+<function>
+def execute_sql_query(sql_query: str) -> pd.DataFrame
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+
+Last code generated:
+import pandas as pd
+sql_new_players_gt = """
+SELECT "Player's List"
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+WHERE Team = 'Gujarat Titans' AND "2022 Squad" = ''
+LIMIT 3
+"""
+df_new_players_gt = execute_sql_query(sql_new_players_gt)
+new_players_list = df_new_players_gt["Player's List"].tolist()
+players_str = ', '.join(new_players_list)
+result = {'type': 'string', 'value': f'The three new players picked by Gujarat Titans are {players_str}.'}
+
+
+
+### QUERY
+ Hw many players are in kolkata knight riders
+
+At the end, declare "result" variable as a dictionary of type and value in the following format:
+
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+
+
+Generate python code and return full updated code:
+
+### Note: Use only relevant table for query and do aggregation, sorting, joins and grouby through sql query
+2026-06-17 22:18:37 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-17 22:18:37 [INFO] Code Generated:
+import pandas as pd
+
+sql_kkr_players_count = """
+SELECT COUNT(*) AS player_count
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+WHERE Team = 'Kolkata Knight Riders'
+"""
+
+df_kkr_players_count = execute_sql_query(sql_kkr_players_count)
+player_count = df_kkr_players_count.iloc[0]['player_count']
+
+result = {"type": "number", "value": player_count}
+2026-06-17 22:18:37 [INFO] Validating code requirements...
+2026-06-17 22:18:37 [INFO] Code validation successful.
+2026-06-17 22:18:37 [INFO] Cleaning the generated code...
+2026-06-17 22:18:37 [INFO] Executing code: import pandas as pd
+sql_kkr_players_count = """
+SELECT COUNT(*) AS player_count
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+WHERE Team = 'Kolkata Knight Riders'
+"""
+df_kkr_players_count = execute_sql_query(sql_kkr_players_count)
+player_count = df_kkr_players_count.iloc[0]['player_count']
+result = {'type': 'number', 'value': player_count}
+2026-06-17 22:18:37 [INFO] Response generated successfully.
+2026-06-17 22:19:03 [INFO] Question: What was the total amount of money spent by all teams in dollars?
+2026-06-17 22:19:03 [INFO] Running PandasAI with openai LLM...
+2026-06-17 22:19:03 [INFO] Prompt ID: afc727a8-dffb-41b6-bd39-401cca4c8858
+2026-06-17 22:19:03 [INFO] Generating new code...
+2026-06-17 22:19:03 [INFO] Using Prompt: <tables>
+
+<table dialect="duckdb" table_name="table_a1d2f5d18660a5b44142666b3bd95e40" columns="[{"name": "Unnamed: 0", "type": "integer", "description": null, "expression": null, "alias": null}, {"name": "Player's List", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Base Price", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "TYPE", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "COST IN ₹ (CR.)", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "Cost IN $ (000)", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "2022 Squad", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Team", "type": "string", "description": null, "expression": null, "alias": null}]" dimensions="568x8">
+Unnamed: 0,Player's List,Base Price,TYPE,COST IN ₹ (CR.),Cost IN $ (000),2022 Squad,Team
+0,Shivam Mavi,4000000,BOWLER,6.0,720.0,KKR,Gujarat Titans
+1,Joshua Little,5000000,BOWLER,4.4,528.0,,Gujarat Titans
+2,Kane Williamson,20000000,BATSMAN,2.0,240.0,SRH,Gujarat Titans
+3,K.S. Bharat,2000000,WICKETKEEPER,1.2,144.0,DC,Gujarat Titans
+4,Mohit Sharma,5000000,BOWLER,0.5,60.0,,Gujarat Titans
+</table>
+
+
+</tables>
+
+The following functions have already been provided. Please use them as needed and do not redefine them.
+<function>
+def execute_sql_query(sql_query: str) -> pd.DataFrame
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+
+Last code generated:
+import pandas as pd
+sql_kkr_players_count = """
+SELECT COUNT(*) AS player_count
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+WHERE Team = 'Kolkata Knight Riders'
+"""
+df_kkr_players_count = execute_sql_query(sql_kkr_players_count)
+player_count = df_kkr_players_count.iloc[0]['player_count']
+result = {'type': 'number', 'value': player_count}
+
+
+
+### QUERY
+ What was the total amount of money spent by all teams in dollars?
+
+At the end, declare "result" variable as a dictionary of type and value in the following format:
+
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+
+
+Generate python code and return full updated code:
+
+### Note: Use only relevant table for query and do aggregation, sorting, joins and grouby through sql query
+2026-06-17 22:19:05 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-17 22:19:05 [INFO] Code Generated:
+import pandas as pd
+
+sql_total_spent_usd = """
+SELECT SUM("Cost IN $ (000)") * 1000 AS total_spent_usd
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+"""
+
+df_total_spent_usd = execute_sql_query(sql_total_spent_usd)
+total_spent_usd = df_total_spent_usd.iloc[0]['total_spent_usd']
+
+result = {"type": "number", "value": total_spent_usd}
+2026-06-17 22:19:05 [INFO] Validating code requirements...
+2026-06-17 22:19:05 [INFO] Code validation successful.
+2026-06-17 22:19:05 [INFO] Cleaning the generated code...
+2026-06-17 22:19:05 [INFO] Executing code: import pandas as pd
+sql_total_spent_usd = """
+SELECT SUM("Cost IN $ (000)") * 1000 AS total_spent_usd
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+"""
+df_total_spent_usd = execute_sql_query(sql_total_spent_usd)
+total_spent_usd = df_total_spent_usd.iloc[0]['total_spent_usd']
+result = {'type': 'number', 'value': total_spent_usd}
+2026-06-17 22:19:05 [INFO] Response generated successfully.
+2026-06-17 22:19:22 [INFO] Question: Draw a bar plot showing how much money Mumbai Indians spent on each type of player.
+2026-06-17 22:19:22 [INFO] Running PandasAI with openai LLM...
+2026-06-17 22:19:22 [INFO] Prompt ID: 9332b42a-7ad3-4776-9445-5552719b9e83
+2026-06-17 22:19:22 [INFO] Generating new code...
+2026-06-17 22:19:22 [INFO] Using Prompt: <tables>
+
+<table dialect="duckdb" table_name="table_a1d2f5d18660a5b44142666b3bd95e40" columns="[{"name": "Unnamed: 0", "type": "integer", "description": null, "expression": null, "alias": null}, {"name": "Player's List", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Base Price", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "TYPE", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "COST IN ₹ (CR.)", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "Cost IN $ (000)", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "2022 Squad", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Team", "type": "string", "description": null, "expression": null, "alias": null}]" dimensions="568x8">
+Unnamed: 0,Player's List,Base Price,TYPE,COST IN ₹ (CR.),Cost IN $ (000),2022 Squad,Team
+0,Shivam Mavi,4000000,BOWLER,6.0,720.0,KKR,Gujarat Titans
+1,Joshua Little,5000000,BOWLER,4.4,528.0,,Gujarat Titans
+2,Kane Williamson,20000000,BATSMAN,2.0,240.0,SRH,Gujarat Titans
+3,K.S. Bharat,2000000,WICKETKEEPER,1.2,144.0,DC,Gujarat Titans
+4,Mohit Sharma,5000000,BOWLER,0.5,60.0,,Gujarat Titans
+</table>
+
+
+</tables>
+
+The following functions have already been provided. Please use them as needed and do not redefine them.
+<function>
+def execute_sql_query(sql_query: str) -> pd.DataFrame
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+
+Last code generated:
+import pandas as pd
+sql_total_spent_usd = """
+SELECT SUM("Cost IN $ (000)") * 1000 AS total_spent_usd
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+"""
+df_total_spent_usd = execute_sql_query(sql_total_spent_usd)
+total_spent_usd = df_total_spent_usd.iloc[0]['total_spent_usd']
+result = {'type': 'number', 'value': total_spent_usd}
+
+
+
+### QUERY
+ Draw a bar plot showing how much money Mumbai Indians spent on each type of player.
+
+At the end, declare "result" variable as a dictionary of type and value in the following format:
+
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+
+
+Generate python code and return full updated code:
+
+### Note: Use only relevant table for query and do aggregation, sorting, joins and grouby through sql query
+2026-06-17 22:19:26 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-17 22:19:26 [INFO] Code Generated:
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# SQL query to get total money spent by Mumbai Indians on each type of player
+sql_mi_spent_by_type = """
+SELECT TYPE, SUM("COST IN ₹ (CR.)") AS total_spent_cr
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+WHERE Team = 'Mumbai Indians'
+GROUP BY TYPE
+ORDER BY total_spent_cr DESC
+"""
+df_mi_spent_by_type = execute_sql_query(sql_mi_spent_by_type)
+
+# Plotting the bar plot
+plt.figure(figsize=(8,5))
+plt.bar(df_mi_spent_by_type['TYPE'], df_mi_spent_by_type['total_spent_cr'], color='blue')
+plt.xlabel('Player Type')
+plt.ylabel('Total Money Spent (₹ Crores)')
+plt.title('Mumbai Indians Spending on Each Type of Player')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.savefig("mi_spending_by_type.png")
+plt.close()
+
+result = {"type": "plot", "value": "mi_spending_by_type.png"}
+2026-06-17 22:19:26 [INFO] Validating code requirements...
+2026-06-17 22:19:26 [INFO] Code validation successful.
+2026-06-17 22:19:26 [INFO] Cleaning the generated code...
+2026-06-17 22:19:26 [INFO] Executing code: import pandas as pd
+import matplotlib.pyplot as plt
+sql_mi_spent_by_type = """
+SELECT TYPE, SUM("COST IN ₹ (CR.)") AS total_spent_cr
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+WHERE Team = 'Mumbai Indians'
+GROUP BY TYPE
+ORDER BY total_spent_cr DESC
+"""
+df_mi_spent_by_type = execute_sql_query(sql_mi_spent_by_type)
+plt.figure(figsize=(8, 5))
+plt.bar(df_mi_spent_by_type['TYPE'], df_mi_spent_by_type['total_spent_cr'], color='blue')
+plt.xlabel('Player Type')
+plt.ylabel('Total Money Spent (₹ Crores)')
+plt.title('Mumbai Indians Spending on Each Type of Player')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.savefig('exports/charts/temp_chart_90aff397-3e11-4c68-8770-698762f31afc.png')
+plt.close()
+result = {'type': 'plot', 'value': 'exports/charts/temp_chart_90aff397-3e11-4c68-8770-698762f31afc.png'}
+2026-06-17 22:19:26 [INFO] Response generated successfully.
+2026-06-17 22:19:50 [INFO] Question: Draw a bar plot showing how much money Mumbai Indians spent on each type of player.
+2026-06-17 22:19:50 [INFO] Running PandasAI with openai LLM...
+2026-06-17 22:19:50 [INFO] Prompt ID: ae022519-2547-4385-85e4-25c9d3f73ce3
+2026-06-17 22:19:50 [INFO] Generating new code...
+2026-06-17 22:19:50 [INFO] Using Prompt: <tables>
+
+<table dialect="duckdb" table_name="table_a1d2f5d18660a5b44142666b3bd95e40" columns="[{"name": "Unnamed: 0", "type": "integer", "description": null, "expression": null, "alias": null}, {"name": "Player's List", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Base Price", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "TYPE", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "COST IN ₹ (CR.)", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "Cost IN $ (000)", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "2022 Squad", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Team", "type": "string", "description": null, "expression": null, "alias": null}]" dimensions="568x8">
+Unnamed: 0,Player's List,Base Price,TYPE,COST IN ₹ (CR.),Cost IN $ (000),2022 Squad,Team
+0,Shivam Mavi,4000000,BOWLER,6.0,720.0,KKR,Gujarat Titans
+1,Joshua Little,5000000,BOWLER,4.4,528.0,,Gujarat Titans
+2,Kane Williamson,20000000,BATSMAN,2.0,240.0,SRH,Gujarat Titans
+3,K.S. Bharat,2000000,WICKETKEEPER,1.2,144.0,DC,Gujarat Titans
+4,Mohit Sharma,5000000,BOWLER,0.5,60.0,,Gujarat Titans
+</table>
+
+
+</tables>
+
+The following functions have already been provided. Please use them as needed and do not redefine them.
+<function>
+def execute_sql_query(sql_query: str) -> pd.DataFrame
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+
+Last code generated:
+import pandas as pd
+import matplotlib.pyplot as plt
+sql_mi_spent_by_type = """
+SELECT TYPE, SUM("COST IN ₹ (CR.)") AS total_spent_cr
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+WHERE Team = 'Mumbai Indians'
+GROUP BY TYPE
+ORDER BY total_spent_cr DESC
+"""
+df_mi_spent_by_type = execute_sql_query(sql_mi_spent_by_type)
+plt.figure(figsize=(8, 5))
+plt.bar(df_mi_spent_by_type['TYPE'], df_mi_spent_by_type['total_spent_cr'], color='blue')
+plt.xlabel('Player Type')
+plt.ylabel('Total Money Spent (₹ Crores)')
+plt.title('Mumbai Indians Spending on Each Type of Player')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.savefig('exports/charts/temp_chart_90aff397-3e11-4c68-8770-698762f31afc.png')
+plt.close()
+result = {'type': 'plot', 'value': 'exports/charts/temp_chart_90aff397-3e11-4c68-8770-698762f31afc.png'}
+
+
+
+### QUERY
+ Draw a bar plot showing how much money Mumbai Indians spent on each type of player.
+
+At the end, declare "result" variable as a dictionary of type and value in the following format:
+
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+
+
+Generate python code and return full updated code:
+
+### Note: Use only relevant table for query and do aggregation, sorting, joins and grouby through sql query
+2026-06-17 22:19:54 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-17 22:19:54 [INFO] Code Generated:
+import pandas as pd
+import matplotlib.pyplot as plt
+
+sql_mi_spent_by_type = """
+SELECT TYPE, SUM("COST IN ₹ (CR.)") AS total_spent_cr
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+WHERE Team = 'Mumbai Indians'
+GROUP BY TYPE
+ORDER BY total_spent_cr DESC
+"""
+df_mi_spent_by_type = execute_sql_query(sql_mi_spent_by_type)
+
+plt.figure(figsize=(8, 5))
+plt.bar(df_mi_spent_by_type['TYPE'], df_mi_spent_by_type['total_spent_cr'], color='blue')
+plt.xlabel('Player Type')
+plt.ylabel('Total Money Spent (₹ Crores)')
+plt.title('Mumbai Indians Spending on Each Type of Player')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.savefig('exports/charts/temp_chart_90aff397-3e11-4c68-8770-698762f31afc.png')
+plt.close()
+
+result = {'type': 'plot', 'value': 'exports/charts/temp_chart_90aff397-3e11-4c68-8770-698762f31afc.png'}
+2026-06-17 22:19:54 [INFO] Validating code requirements...
+2026-06-17 22:19:54 [INFO] Code validation successful.
+2026-06-17 22:19:54 [INFO] Cleaning the generated code...
+2026-06-17 22:19:54 [INFO] Executing code: import pandas as pd
+import matplotlib.pyplot as plt
+sql_mi_spent_by_type = """
+SELECT TYPE, SUM("COST IN ₹ (CR.)") AS total_spent_cr
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+WHERE Team = 'Mumbai Indians'
+GROUP BY TYPE
+ORDER BY total_spent_cr DESC
+"""
+df_mi_spent_by_type = execute_sql_query(sql_mi_spent_by_type)
+plt.figure(figsize=(8, 5))
+plt.bar(df_mi_spent_by_type['TYPE'], df_mi_spent_by_type['total_spent_cr'], color='blue')
+plt.xlabel('Player Type')
+plt.ylabel('Total Money Spent (₹ Crores)')
+plt.title('Mumbai Indians Spending on Each Type of Player')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.savefig('exports/charts/temp_chart_2be7a32e-5b99-4de8-9556-95140b595b25.png')
+plt.close()
+result = {'type': 'plot', 'value': 'exports/charts/temp_chart_2be7a32e-5b99-4de8-9556-95140b595b25.png'}
+2026-06-17 22:19:54 [INFO] Response generated successfully.
+2026-06-17 22:20:13 [INFO] Question: Draw a bar plot showing how much money Gujarat Titans spent on each type of player.
+2026-06-17 22:20:13 [INFO] Running PandasAI with openai LLM...
+2026-06-17 22:20:13 [INFO] Prompt ID: c4dae7db-3400-4272-ba87-8f8830e781fa
+2026-06-17 22:20:13 [INFO] Generating new code...
+2026-06-17 22:20:13 [INFO] Using Prompt: <tables>
+
+<table dialect="duckdb" table_name="table_a1d2f5d18660a5b44142666b3bd95e40" columns="[{"name": "Unnamed: 0", "type": "integer", "description": null, "expression": null, "alias": null}, {"name": "Player's List", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Base Price", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "TYPE", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "COST IN ₹ (CR.)", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "Cost IN $ (000)", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "2022 Squad", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Team", "type": "string", "description": null, "expression": null, "alias": null}]" dimensions="568x8">
+Unnamed: 0,Player's List,Base Price,TYPE,COST IN ₹ (CR.),Cost IN $ (000),2022 Squad,Team
+0,Shivam Mavi,4000000,BOWLER,6.0,720.0,KKR,Gujarat Titans
+1,Joshua Little,5000000,BOWLER,4.4,528.0,,Gujarat Titans
+2,Kane Williamson,20000000,BATSMAN,2.0,240.0,SRH,Gujarat Titans
+3,K.S. Bharat,2000000,WICKETKEEPER,1.2,144.0,DC,Gujarat Titans
+4,Mohit Sharma,5000000,BOWLER,0.5,60.0,,Gujarat Titans
+</table>
+
+
+</tables>
+
+The following functions have already been provided. Please use them as needed and do not redefine them.
+<function>
+def execute_sql_query(sql_query: str) -> pd.DataFrame
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+
+Last code generated:
+import pandas as pd
+import matplotlib.pyplot as plt
+sql_mi_spent_by_type = """
+SELECT TYPE, SUM("COST IN ₹ (CR.)") AS total_spent_cr
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+WHERE Team = 'Mumbai Indians'
+GROUP BY TYPE
+ORDER BY total_spent_cr DESC
+"""
+df_mi_spent_by_type = execute_sql_query(sql_mi_spent_by_type)
+plt.figure(figsize=(8, 5))
+plt.bar(df_mi_spent_by_type['TYPE'], df_mi_spent_by_type['total_spent_cr'], color='blue')
+plt.xlabel('Player Type')
+plt.ylabel('Total Money Spent (₹ Crores)')
+plt.title('Mumbai Indians Spending on Each Type of Player')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.savefig('exports/charts/temp_chart_2be7a32e-5b99-4de8-9556-95140b595b25.png')
+plt.close()
+result = {'type': 'plot', 'value': 'exports/charts/temp_chart_2be7a32e-5b99-4de8-9556-95140b595b25.png'}
+
+
+
+### QUERY
+ Draw a bar plot showing how much money Gujarat Titans spent on each type of player.
+
+At the end, declare "result" variable as a dictionary of type and value in the following format:
+
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+
+
+Generate python code and return full updated code:
+
+### Note: Use only relevant table for query and do aggregation, sorting, joins and grouby through sql query
+2026-06-17 22:20:16 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-17 22:20:16 [INFO] Code Generated:
+import pandas as pd
+import matplotlib.pyplot as plt
+
+sql_gt_spent_by_type = """
+SELECT TYPE, SUM("COST IN ₹ (CR.)") AS total_spent_cr
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+WHERE Team = 'Gujarat Titans'
+GROUP BY TYPE
+ORDER BY total_spent_cr DESC
+"""
+df_gt_spent_by_type = execute_sql_query(sql_gt_spent_by_type)
+
+plt.figure(figsize=(8, 5))
+plt.bar(df_gt_spent_by_type['TYPE'], df_gt_spent_by_type['total_spent_cr'], color='green')
+plt.xlabel('Player Type')
+plt.ylabel('Total Money Spent (₹ Crores)')
+plt.title('Gujarat Titans Spending on Each Type of Player')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.savefig('exports/charts/temp_chart_gujarat_titans_spent_by_type.png')
+plt.close()
+
+result = {'type': 'plot', 'value': 'exports/charts/temp_chart_gujarat_titans_spent_by_type.png'}
+2026-06-17 22:20:16 [INFO] Validating code requirements...
+2026-06-17 22:20:16 [INFO] Code validation successful.
+2026-06-17 22:20:16 [INFO] Cleaning the generated code...
+2026-06-17 22:20:16 [INFO] Executing code: import pandas as pd
+import matplotlib.pyplot as plt
+sql_gt_spent_by_type = """
+SELECT TYPE, SUM("COST IN ₹ (CR.)") AS total_spent_cr
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+WHERE Team = 'Gujarat Titans'
+GROUP BY TYPE
+ORDER BY total_spent_cr DESC
+"""
+df_gt_spent_by_type = execute_sql_query(sql_gt_spent_by_type)
+plt.figure(figsize=(8, 5))
+plt.bar(df_gt_spent_by_type['TYPE'], df_gt_spent_by_type['total_spent_cr'], color='green')
+plt.xlabel('Player Type')
+plt.ylabel('Total Money Spent (₹ Crores)')
+plt.title('Gujarat Titans Spending on Each Type of Player')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.savefig('exports/charts/temp_chart_3333f517-fb73-4725-936b-690de4a87565.png')
+plt.close()
+result = {'type': 'plot', 'value': 'exports/charts/temp_chart_3333f517-fb73-4725-936b-690de4a87565.png'}
+2026-06-17 22:20:16 [INFO] Response generated successfully.
+2026-06-17 22:20:36 [INFO] Question: Perform univariate analysis on the dataset.
+2026-06-17 22:20:36 [INFO] Running PandasAI with openai LLM...
+2026-06-17 22:20:36 [INFO] Prompt ID: 2e7af809-382a-4e77-a025-f72a7a044487
+2026-06-17 22:20:36 [INFO] Generating new code...
+2026-06-17 22:20:36 [INFO] Using Prompt: <tables>
+
+<table dialect="duckdb" table_name="table_a1d2f5d18660a5b44142666b3bd95e40" columns="[{"name": "Unnamed: 0", "type": "integer", "description": null, "expression": null, "alias": null}, {"name": "Player's List", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Base Price", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "TYPE", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "COST IN ₹ (CR.)", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "Cost IN $ (000)", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "2022 Squad", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Team", "type": "string", "description": null, "expression": null, "alias": null}]" dimensions="568x8">
+Unnamed: 0,Player's List,Base Price,TYPE,COST IN ₹ (CR.),Cost IN $ (000),2022 Squad,Team
+0,Shivam Mavi,4000000,BOWLER,6.0,720.0,KKR,Gujarat Titans
+1,Joshua Little,5000000,BOWLER,4.4,528.0,,Gujarat Titans
+2,Kane Williamson,20000000,BATSMAN,2.0,240.0,SRH,Gujarat Titans
+3,K.S. Bharat,2000000,WICKETKEEPER,1.2,144.0,DC,Gujarat Titans
+4,Mohit Sharma,5000000,BOWLER,0.5,60.0,,Gujarat Titans
+</table>
+
+
+</tables>
+
+The following functions have already been provided. Please use them as needed and do not redefine them.
+<function>
+def execute_sql_query(sql_query: str) -> pd.DataFrame
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+
+Last code generated:
+import pandas as pd
+import matplotlib.pyplot as plt
+sql_gt_spent_by_type = """
+SELECT TYPE, SUM("COST IN ₹ (CR.)") AS total_spent_cr
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+WHERE Team = 'Gujarat Titans'
+GROUP BY TYPE
+ORDER BY total_spent_cr DESC
+"""
+df_gt_spent_by_type = execute_sql_query(sql_gt_spent_by_type)
+plt.figure(figsize=(8, 5))
+plt.bar(df_gt_spent_by_type['TYPE'], df_gt_spent_by_type['total_spent_cr'], color='green')
+plt.xlabel('Player Type')
+plt.ylabel('Total Money Spent (₹ Crores)')
+plt.title('Gujarat Titans Spending on Each Type of Player')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.savefig('exports/charts/temp_chart_3333f517-fb73-4725-936b-690de4a87565.png')
+plt.close()
+result = {'type': 'plot', 'value': 'exports/charts/temp_chart_3333f517-fb73-4725-936b-690de4a87565.png'}
+
+
+
+### QUERY
+ Perform univariate analysis on the dataset.
+
+At the end, declare "result" variable as a dictionary of type and value in the following format:
+
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+
+
+Generate python code and return full updated code:
+
+### Note: Use only relevant table for query and do aggregation, sorting, joins and grouby through sql query
+2026-06-17 22:20:45 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-17 22:20:45 [INFO] Code Generated:
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Load the dataset for univariate analysis
+sql_all_data = """
+SELECT *
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+"""
+df = execute_sql_query(sql_all_data)
+
+# Summary statistics for numeric columns
+sql_summary_stats = """
+SELECT 
+  COUNT(*) AS total_records,
+  AVG("COST IN ₹ (CR.)") AS avg_cost_cr,
+  MIN("COST IN ₹ (CR.)") AS min_cost_cr,
+  MAX("COST IN ₹ (CR.)") AS max_cost_cr,
+  AVG("Cost IN $ (000)") AS avg_cost_usd,
+  MIN("Cost IN $ (000)") AS min_cost_usd,
+  MAX("Cost IN $ (000)") AS max_cost_usd
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+"""
+summary_stats = execute_sql_query(sql_summary_stats)
+
+# Frequency counts for categorical columns: TYPE, Team, 2022 Squad
+sql_type_counts = """
+SELECT TYPE, COUNT(*) AS count
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+GROUP BY TYPE
+ORDER BY count DESC
+"""
+type_counts = execute_sql_query(sql_type_counts)
+
+sql_team_counts = """
+SELECT Team, COUNT(*) AS count
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+GROUP BY Team
+ORDER BY count DESC
+"""
+team_counts = execute_sql_query(sql_team_counts)
+
+sql_squad_counts = """
+SELECT "2022 Squad", COUNT(*) AS count
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+WHERE "2022 Squad" IS NOT NULL AND "2022 Squad" != ''
+GROUP BY "2022 Squad"
+ORDER BY count DESC
+"""
+squad_counts = execute_sql_query(sql_squad_counts)
+
+# Plot distribution of COST IN ₹ (CR.)
+plt.figure(figsize=(8,5))
+plt.hist(df["COST IN ₹ (CR.)"], bins=20, color='skyblue', edgecolor='black')
+plt.title('Distribution of Cost in ₹ (CR.)')
+plt.xlabel('Cost in ₹ (CR.)')
+plt.ylabel('Frequency')
+plt.tight_layout()
+plt.savefig('exports/charts/cost_distribution.png')
+plt.close()
+
+# Plot frequency of player TYPE
+plt.figure(figsize=(8,5))
+plt.bar(type_counts['TYPE'], type_counts['count'], color='orange')
+plt.title('Count of Players by Type')
+plt.xlabel('Player Type')
+plt.ylabel('Count')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.savefig('exports/charts/type_counts.png')
+plt.close()
+
+# Prepare a summary dataframe combining key univariate stats
+summary_df = pd.DataFrame({
+    'Metric': ['Total Records', 'Avg Cost ₹ (CR.)', 'Min Cost ₹ (CR.)', 'Max Cost ₹ (CR.)',
+               'Avg Cost $ (000)', 'Min Cost $ (000)', 'Max Cost $ (000)'],
+    'Value': [summary_stats.at[0, 'total_records'], summary_stats.at[0, 'avg_cost_cr'], summary_stats.at[0, 'min_cost_cr'], summary_stats.at[0, 'max_cost_cr'],
+              summary_stats.at[0, 'avg_cost_usd'], summary_stats.at[0, 'min_cost_usd'], summary_stats.at[0, 'max_cost_usd']]
+})
+
+# Return the summary dataframe and mention saved plots
+result = {
+    "type": "dataframe",
+    "value": summary_df
+}
+2026-06-17 22:20:45 [INFO] Validating code requirements...
+2026-06-17 22:20:45 [INFO] Code validation successful.
+2026-06-17 22:20:45 [INFO] Cleaning the generated code...
+2026-06-17 22:20:45 [INFO] Executing code: import pandas as pd
+import matplotlib.pyplot as plt
+sql_all_data = """
+SELECT *
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+"""
+df = execute_sql_query(sql_all_data)
+sql_summary_stats = """
+SELECT 
+  COUNT(*) AS total_records,
+  AVG("COST IN ₹ (CR.)") AS avg_cost_cr,
+  MIN("COST IN ₹ (CR.)") AS min_cost_cr,
+  MAX("COST IN ₹ (CR.)") AS max_cost_cr,
+  AVG("Cost IN $ (000)") AS avg_cost_usd,
+  MIN("Cost IN $ (000)") AS min_cost_usd,
+  MAX("Cost IN $ (000)") AS max_cost_usd
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+"""
+summary_stats = execute_sql_query(sql_summary_stats)
+sql_type_counts = """
+SELECT TYPE, COUNT(*) AS count
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+GROUP BY TYPE
+ORDER BY count DESC
+"""
+type_counts = execute_sql_query(sql_type_counts)
+sql_team_counts = """
+SELECT Team, COUNT(*) AS count
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+GROUP BY Team
+ORDER BY count DESC
+"""
+team_counts = execute_sql_query(sql_team_counts)
+sql_squad_counts = """
+SELECT "2022 Squad", COUNT(*) AS count
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+WHERE "2022 Squad" IS NOT NULL AND "2022 Squad" != ''
+GROUP BY "2022 Squad"
+ORDER BY count DESC
+"""
+squad_counts = execute_sql_query(sql_squad_counts)
+plt.figure(figsize=(8, 5))
+plt.hist(df['COST IN ₹ (CR.)'], bins=20, color='skyblue', edgecolor='black')
+plt.title('Distribution of Cost in ₹ (CR.)')
+plt.xlabel('Cost in ₹ (CR.)')
+plt.ylabel('Frequency')
+plt.tight_layout()
+plt.savefig('exports/charts/temp_chart_22790312-b94e-4036-b725-736d9b3d1c1a.png')
+plt.close()
+plt.figure(figsize=(8, 5))
+plt.bar(type_counts['TYPE'], type_counts['count'], color='orange')
+plt.title('Count of Players by Type')
+plt.xlabel('Player Type')
+plt.ylabel('Count')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.savefig('exports/charts/temp_chart_22790312-b94e-4036-b725-736d9b3d1c1a.png')
+plt.close()
+summary_df = pd.DataFrame({'Metric': ['Total Records', 'Avg Cost ₹ (CR.)', 'Min Cost ₹ (CR.)', 'Max Cost ₹ (CR.)', 'Avg Cost $ (000)', 'Min Cost $ (000)', 'Max Cost $ (000)'], 'Value': [summary_stats.at[0, 'total_records'], summary_stats.at[0, 'avg_cost_cr'], summary_stats.at[0, 'min_cost_cr'], summary_stats.at[0, 'max_cost_cr'], summary_stats.at[0, 'avg_cost_usd'], summary_stats.at[0, 'min_cost_usd'], summary_stats.at[0, 'max_cost_usd']]})
+result = {'type': 'dataframe', 'value': summary_df}
+2026-06-17 22:20:46 [INFO] Response generated successfully.
+2026-06-17 22:21:02 [INFO] Question: Perform multivariate analysis on the dataset.
+2026-06-17 22:21:02 [INFO] Running PandasAI with openai LLM...
+2026-06-17 22:21:02 [INFO] Prompt ID: 1b2e2b5a-05c2-415a-9286-d9a3c40a6a80
+2026-06-17 22:21:02 [INFO] Generating new code...
+2026-06-17 22:21:02 [INFO] Using Prompt: <tables>
+
+<table dialect="duckdb" table_name="table_a1d2f5d18660a5b44142666b3bd95e40" columns="[{"name": "Unnamed: 0", "type": "integer", "description": null, "expression": null, "alias": null}, {"name": "Player's List", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Base Price", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "TYPE", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "COST IN ₹ (CR.)", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "Cost IN $ (000)", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "2022 Squad", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Team", "type": "string", "description": null, "expression": null, "alias": null}]" dimensions="568x8">
+Unnamed: 0,Player's List,Base Price,TYPE,COST IN ₹ (CR.),Cost IN $ (000),2022 Squad,Team
+0,Shivam Mavi,4000000,BOWLER,6.0,720.0,KKR,Gujarat Titans
+1,Joshua Little,5000000,BOWLER,4.4,528.0,,Gujarat Titans
+2,Kane Williamson,20000000,BATSMAN,2.0,240.0,SRH,Gujarat Titans
+3,K.S. Bharat,2000000,WICKETKEEPER,1.2,144.0,DC,Gujarat Titans
+4,Mohit Sharma,5000000,BOWLER,0.5,60.0,,Gujarat Titans
+</table>
+
+
+</tables>
+
+The following functions have already been provided. Please use them as needed and do not redefine them.
+<function>
+def execute_sql_query(sql_query: str) -> pd.DataFrame
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+
+Last code generated:
+import pandas as pd
+import matplotlib.pyplot as plt
+sql_all_data = """
+SELECT *
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+"""
+df = execute_sql_query(sql_all_data)
+sql_summary_stats = """
+SELECT 
+  COUNT(*) AS total_records,
+  AVG("COST IN ₹ (CR.)") AS avg_cost_cr,
+  MIN("COST IN ₹ (CR.)") AS min_cost_cr,
+  MAX("COST IN ₹ (CR.)") AS max_cost_cr,
+  AVG("Cost IN $ (000)") AS avg_cost_usd,
+  MIN("Cost IN $ (000)") AS min_cost_usd,
+  MAX("Cost IN $ (000)") AS max_cost_usd
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+"""
+summary_stats = execute_sql_query(sql_summary_stats)
+sql_type_counts = """
+SELECT TYPE, COUNT(*) AS count
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+GROUP BY TYPE
+ORDER BY count DESC
+"""
+type_counts = execute_sql_query(sql_type_counts)
+sql_team_counts = """
+SELECT Team, COUNT(*) AS count
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+GROUP BY Team
+ORDER BY count DESC
+"""
+team_counts = execute_sql_query(sql_team_counts)
+sql_squad_counts = """
+SELECT "2022 Squad", COUNT(*) AS count
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+WHERE "2022 Squad" IS NOT NULL AND "2022 Squad" != ''
+GROUP BY "2022 Squad"
+ORDER BY count DESC
+"""
+squad_counts = execute_sql_query(sql_squad_counts)
+plt.figure(figsize=(8, 5))
+plt.hist(df['COST IN ₹ (CR.)'], bins=20, color='skyblue', edgecolor='black')
+plt.title('Distribution of Cost in ₹ (CR.)')
+plt.xlabel('Cost in ₹ (CR.)')
+plt.ylabel('Frequency')
+plt.tight_layout()
+plt.savefig('exports/charts/temp_chart_22790312-b94e-4036-b725-736d9b3d1c1a.png')
+plt.close()
+plt.figure(figsize=(8, 5))
+plt.bar(type_counts['TYPE'], type_counts['count'], color='orange')
+plt.title('Count of Players by Type')
+plt.xlabel('Player Type')
+plt.ylabel('Count')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.savefig('exports/charts/temp_chart_22790312-b94e-4036-b725-736d9b3d1c1a.png')
+plt.close()
+summary_df = pd.DataFrame({'Metric': ['Total Records', 'Avg Cost ₹ (CR.)', 'Min Cost ₹ (CR.)', 'Max Cost ₹ (CR.)', 'Avg Cost $ (000)', 'Min Cost $ (000)', 'Max Cost $ (000)'], 'Value': [summary_stats.at[0, 'total_records'], summary_stats.at[0, 'avg_cost_cr'], summary_stats.at[0, 'min_cost_cr'], summary_stats.at[0, 'max_cost_cr'], summary_stats.at[0, 'avg_cost_usd'], summary_stats.at[0, 'min_cost_usd'], summary_stats.at[0, 'max_cost_usd']]})
+result = {'type': 'dataframe', 'value': summary_df}
+
+
+
+### QUERY
+ Perform multivariate analysis on the dataset.
+
+At the end, declare "result" variable as a dictionary of type and value in the following format:
+
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+
+
+Generate python code and return full updated code:
+
+### Note: Use only relevant table for query and do aggregation, sorting, joins and grouby through sql query
+2026-06-17 22:21:11 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-17 22:21:11 [INFO] Code Generated:
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Load full dataset
+sql_all_data = """
+SELECT *
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+"""
+df = execute_sql_query(sql_all_data)
+
+# Multivariate analysis: Explore relationships between TYPE, Team, and Cost in ₹ (CR.)
+# 1. Average cost by TYPE and Team
+sql_avg_cost_type_team = """
+SELECT TYPE, Team, 
+       AVG("COST IN ₹ (CR.)") AS avg_cost_cr,
+       COUNT(*) AS player_count
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+GROUP BY TYPE, Team
+ORDER BY TYPE, avg_cost_cr DESC
+"""
+avg_cost_type_team = execute_sql_query(sql_avg_cost_type_team)
+
+# 2. Correlation between COST IN ₹ (CR.) and COST IN $ (000)
+# Since these are directly proportional, just calculate correlation coefficient
+cost_corr = df['COST IN ₹ (CR.)'].corr(df['Cost IN $ (000)'])
+
+# 3. Pivot table for average cost by TYPE and Team for heatmap visualization
+pivot_avg_cost = avg_cost_type_team.pivot(index='TYPE', columns='Team', values='avg_cost_cr').fillna(0)
+
+# Plot heatmap of average cost by TYPE and Team
+plt.figure(figsize=(12, 6))
+plt.title('Average Cost in ₹ (CR.) by Player Type and Team')
+plt.imshow(pivot_avg_cost, cmap='YlGnBu', aspect='auto')
+plt.colorbar(label='Avg Cost ₹ (CR.)')
+plt.xticks(ticks=range(len(pivot_avg_cost.columns)), labels=pivot_avg_cost.columns, rotation=45, ha='right')
+plt.yticks(ticks=range(len(pivot_avg_cost.index)), labels=pivot_avg_cost.index)
+plt.tight_layout()
+heatmap_path = 'exports/charts/avg_cost_type_team_heatmap.png'
+plt.savefig(heatmap_path)
+plt.close()
+
+# 4. Boxplot to show distribution of COST IN ₹ (CR.) by TYPE
+plt.figure(figsize=(8, 5))
+df.boxplot(column='COST IN ₹ (CR.)', by='TYPE', grid=False)
+plt.title('Cost in ₹ (CR.) Distribution by Player Type')
+plt.suptitle('')
+plt.xlabel('Player Type')
+plt.ylabel('Cost in ₹ (CR.)')
+plt.xticks(rotation=45)
+plt.tight_layout()
+boxplot_path = 'exports/charts/cost_distribution_by_type.png'
+plt.savefig(boxplot_path)
+plt.close()
+
+# Prepare summary dataframe for multivariate insights
+summary_multivariate = pd.DataFrame({
+    'Metric': [
+        'Correlation between COST IN ₹ (CR.) and COST IN $ (000)',
+        'Number of Player Types',
+        'Number of Teams',
+        'Total Players'
+    ],
+    'Value': [
+        cost_corr,
+        df['TYPE'].nunique(),
+        df['Team'].nunique(),
+        len(df)
+    ]
+})
+
+# Return results as dictionary with multiple outputs:
+# - Dataframe summarizing multivariate stats
+# - Heatmap plot path
+# - Boxplot plot path
+
+result = {
+    "type": "dataframe",
+    "value": summary_multivariate
+}
+2026-06-17 22:21:11 [INFO] Validating code requirements...
+2026-06-17 22:21:11 [INFO] Code validation successful.
+2026-06-17 22:21:11 [INFO] Cleaning the generated code...
+2026-06-17 22:21:11 [INFO] Executing code: import pandas as pd
+import matplotlib.pyplot as plt
+sql_all_data = """
+SELECT *
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+"""
+df = execute_sql_query(sql_all_data)
+sql_avg_cost_type_team = """
+SELECT TYPE, Team, 
+       AVG("COST IN ₹ (CR.)") AS avg_cost_cr,
+       COUNT(*) AS player_count
+FROM table_a1d2f5d18660a5b44142666b3bd95e40
+GROUP BY TYPE, Team
+ORDER BY TYPE, avg_cost_cr DESC
+"""
+avg_cost_type_team = execute_sql_query(sql_avg_cost_type_team)
+cost_corr = df['COST IN ₹ (CR.)'].corr(df['Cost IN $ (000)'])
+pivot_avg_cost = avg_cost_type_team.pivot(index='TYPE', columns='Team', values='avg_cost_cr').fillna(0)
+plt.figure(figsize=(12, 6))
+plt.title('Average Cost in ₹ (CR.) by Player Type and Team')
+plt.imshow(pivot_avg_cost, cmap='YlGnBu', aspect='auto')
+plt.colorbar(label='Avg Cost ₹ (CR.)')
+plt.xticks(ticks=range(len(pivot_avg_cost.columns)), labels=pivot_avg_cost.columns, rotation=45, ha='right')
+plt.yticks(ticks=range(len(pivot_avg_cost.index)), labels=pivot_avg_cost.index)
+plt.tight_layout()
+heatmap_path = 'exports/charts/temp_chart_9f6cff8e-a6cf-41b3-9f62-da40987876e4.png'
+plt.savefig(heatmap_path)
+plt.close()
+plt.figure(figsize=(8, 5))
+df.boxplot(column='COST IN ₹ (CR.)', by='TYPE', grid=False)
+plt.title('Cost in ₹ (CR.) Distribution by Player Type')
+plt.suptitle('')
+plt.xlabel('Player Type')
+plt.ylabel('Cost in ₹ (CR.)')
+plt.xticks(rotation=45)
+plt.tight_layout()
+boxplot_path = 'exports/charts/temp_chart_9f6cff8e-a6cf-41b3-9f62-da40987876e4.png'
+plt.savefig(boxplot_path)
+plt.close()
+summary_multivariate = pd.DataFrame({'Metric': ['Correlation between COST IN ₹ (CR.) and COST IN $ (000)', 'Number of Player Types', 'Number of Teams', 'Total Players'], 'Value': [cost_corr, df['TYPE'].nunique(), df['Team'].nunique(), len(df)]})
+result = {'type': 'dataframe', 'value': summary_multivariate}
+2026-06-17 22:21:11 [INFO] Response generated successfully.
